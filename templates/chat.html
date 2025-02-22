@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroMed AI Clinical Advisor</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Clinical Navigation Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark clinical-nav">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-hospital-symbol me-2"></i>
+                NeuroMed AI Clinic
+            </a>
+            <div class="d-flex align-items-center">
+                <span class="badge bg-teal">HIPAA Compliant</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- AI Consultation Interface -->
+    <div class="container clinical-container">
+        <div class="clinical-header text-center mb-4">
+            <h1 class="display-6 fw-600 mb-3">
+                <i class="fas fa-brain-circuit me-2"></i>
+                AI-Powered Clinical Decision Support
+            </h1>
+            <p class="text-secondary">Advanced differential diagnosis powered by neural networks<br> 
+            Always consult with human provider for final medical decisions</p>
+        </div>
+
+        <!-- Consultation Interface -->
+        <div class="clinical-interface">
+            <!-- Chat History -->
+            <div class="clinical-chat-history">
+                {% if response %}
+                <div class="clinical-message ai-response">
+                    <div class="message-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <h5>Clinical Analysis Report</h5>
+                        <p>{{ response }}</p>
+                        <div class="disclaimer-text">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            This AI-generated suggestion requires physician validation
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Input Panel -->
+            <div class="clinical-input-panel">
+                <form action="/" method="POST" class="clinical-input-form">
+                    <div class="input-group">
+                        <input type="text" name="msg" class="form-control clinical-input" 
+                               placeholder="Describe your symptoms or ask a medical question..." 
+                               required>
+                        <button type="submit" class="btn clinical-submit-btn">
+                            <i class="fas fa-stethoscope me-2"></i>
+                            Analyze Symptoms
+                        </button>
+                    </div>
+                    <p class="input-disclaimer">All interactions are encrypted and HIPAA compliant</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
